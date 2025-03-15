@@ -2,6 +2,9 @@
 	"name": "sveltekit-app",
 	"version": "0.0.1",
 	"private": true,
+	"engines": {
+ 	 "node": "18.x"
+	},
 	"scripts": {
 		"dev": "vite dev --port 5175",
 		"build": "vite build",
@@ -14,6 +17,7 @@
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build"
 	},
+	
 	"devDependencies": {
 		"@chromatic-com/storybook": "^1.5.0",
 		"@mdi/js": "^7.4.47",
