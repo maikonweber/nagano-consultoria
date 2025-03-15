@@ -1,154 +1,58 @@
 <script>
   import { onMount } from 'svelte';
   
-  let mobileMenuOpen = false;
+  let isMenuOpen = false;
+  let isScrolled = false;
   
-  function toggleMobileMenu() {
-    mobileMenuOpen = !mobileMenuOpen;
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
   }
   
-  // Fecha o menu móvel quando clica em um link do menu
-  function closeMenu() {
-    mobileMenuOpen = false;
-  }
-  
-  // Fecha o menu móvel quando a tela é redimensionada para tamanho maior
   onMount(() => {
-    const handleResize = () => {
-      if (window.innerWidth > 768) {
-        mobileMenuOpen = false;
-      }
+    const handleScroll = () => {
+      isScrolled = window.scrollY > 50;
     };
     
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll);
     
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll);
     };
   });
 </script>
 
-<header>
-  <div class="container">
-    <div class="header-container">
-      <a href="/" class="logo">
-        <div class="logo-img"></div>
-        Nagano Consignados
+<header class={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 shadow-md py-2' : 'bg-white py-4'}`}>
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <div class="flex-shrink-0">
+      <a href="/" class="block">
+        <img src="/images/logo.svg" alt="Nagano Consultoria" class={`transition-all duration-300 ${isScrolled ? 'h-10' : 'h-12'}`} />
       </a>
-      
-      <button class="mobile-toggle" on:click={toggleMobileMenu} aria-label="Toggle menu">
-        ☰
-      </button>
-      
-      <nav class:active={mobileMenuOpen}>
-        <ul>
-          <li><a href="/" on:click={closeMenu}>Início</a></li>
-          <li><a href="#servicos" on:click={closeMenu}>Serviços</a></li>
-          <li><a href="#blog" on:click={closeMenu}>Blog</a></li>
-          <li><a href="#videos" on:click={closeMenu}>Vídeos</a></li>
-          <li><a href="#contato" on:click={closeMenu}>Contato</a></li>
-        </ul>
-      </nav>
+    </div>
+    
+    <button 
+      class="md:hidden flex flex-col justify-center items-center p-2 focus:outline-none" 
+      on:click={toggleMenu}
+      aria-label="Toggle menu"
+    >
+      <span class="w-6 h-0.5 bg-gray-800 mb-1.5 transition-all"></span>
+      <span class="w-6 h-0.5 bg-gray-800 mb-1.5 transition-all"></span>
+      <span class="w-6 h-0.5 bg-gray-800 transition-all"></span>
+    </button>
+    
+    <nav class={`absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-lg md:shadow-none transition-all duration-300 ${isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full md:opacity-100 md:translate-y-0'} md:block`}>
+      <ul class="flex flex-col md:flex-row py-4 md:py-0">
+        <li class="px-4 py-2 md:py-0"><a href="/" class="text-gray-800 hover:text-blue-600 font-medium transition-colors">Início</a></li>
+        <li class="px-4 py-2 md:py-0"><a href="/servicos" class="text-gray-800 hover:text-blue-600 font-medium transition-colors">Serviços</a></li>
+        <li class="px-4 py-2 md:py-0"><a href="/sobre" class="text-gray-800 hover:text-blue-600 font-medium transition-colors">Sobre Nós</a></li>
+        <li class="px-4 py-2 md:py-0"><a href="/blog" class="text-gray-800 hover:text-blue-600 font-medium transition-colors">Blog</a></li>
+        <li class="px-4 py-2 md:py-0"><a href="/contato" class="text-gray-800 hover:text-blue-600 font-medium transition-colors">Contato</a></li>
+      </ul>
+    </nav>
+    
+    <div class="hidden md:block">
+      <a href="/contato" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+        Solicitar Consulta
+      </a>
     </div>
   </div>
 </header>
-
-<style>
-  header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 1rem 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-  
-  .logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--white);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-  }
-  
-  .logo-img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    background-color: var(--white);
-    border-radius: 50%;
-  }
-  
-  nav ul {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav ul li {
-    margin-left: 1.5rem;
-  }
-  
-  nav ul li a {
-    color: var(--white);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: var(--light-color);
-  }
-  
-  .mobile-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  
-  @media (max-width: 768px) {
-    .header-container {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    nav {
-      width: 100%;
-      display: none;
-      margin-top: 1rem;
-    }
-    
-    nav.active {
-      display: block;
-    }
-    
-    nav ul {
-      flex-direction: column;
-    }
-    
-    nav ul li {
-      margin: 0;
-      margin-bottom: 1rem;
-    }
-    
-    .mobile-toggle {
-      display: block;
-      position: absolute;
-      top: 0.5rem;
-      right: 0;
-    }
-  }
-</style>
