@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+Disallow: /api/
+Disallow: /login/
+Disallow: /register/
+Disallow: /dashboard/
+Disallow: /profile/
+Disallow: /calculadora/
+Disallow: /simulacao/
+
+# Sitemaps
+Sitemap: https://naganoconsultoria.com.br/sitemap.xml
+Sitemap: https://naganoconsultoria.com.br/sitemap-pages.xml
+Sitemap: https://naganoconsultoria.com.br/sitemap-blog.xml
+
+# Crawl-delay
+Crawl-delay: 10 
