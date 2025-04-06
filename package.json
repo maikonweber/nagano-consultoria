@@ -2,11 +2,9 @@
 	"name": "nagano-consultoria",
 	"version": "0.0.1",
 	"private": true,
-	"engines": {
-		"node": "18.x",
-		"npm": "9.x"
-	},
-	"scripts": {
+"engines": {
+  "node": ">=18 <21"
+},	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -15,6 +13,7 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
+	
 	
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.0.0",
