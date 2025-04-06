@@ -87,7 +87,7 @@
       title: 'Crédito Pessoal',
       description: 'Solução rápida para suas necessidades financeiras com processo simplificado.',
       icon: 'credit-card',
-      link: '/servicos/credito-'
+      link: '/servicos/'
     },
     {
       title: 'Refinanciamento',

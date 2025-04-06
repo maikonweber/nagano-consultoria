@@ -21,7 +21,7 @@
   });
 </script>
 
-<header class={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#F5F5DC]/95 shadow-md py-2' : 'bg-[#F5F5DC] py-4'}`}>
+<header class={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-[#f3f3d4]/95 shadow-md py-2' : 'bg-[#f3f3d4] py-4'}`}>
   <div class="container mx-auto px-4 flex justify-between items-center">
     <div class="flex-shrink-0">
       <a href="/" class="block">
@@ -44,8 +44,6 @@
         <li class="px-4 py-2 md:py-0"><a href="/" class="text-[#000080] hover:text-[#000080]/80 font-medium transition-colors">Início</a></li>
         <li class="px-4 py-2 md:py-0"><a href="/servicos" class="text-[#000080] hover:text-[#000080]/80 font-medium transition-colors">Serviços</a></li>
         <li class="px-4 py-2 md:py-0"><a href="/blog" class="text-[#000080] hover:text-[#000080]/80 font-medium transition-colors">Blog</a></li>
-        <li class="px-4 py-2 md:py-0"><a href="/finance-help" class="text-[#000080] hover:text-[#000080]/80 font-medium transition-colors">Finance Help</a></li>
-        <li class="px-4 py-2 md:py-0"><a href="/sobre" class="text-[#000080] hover:text-[#000080]/80 font-medium transition-colors">Sobre Nós</a></li>
         <li class="px-4 py-2 md:py-0"><a href="/contato" class="text-[#000080] hover:text-[#000080]/80 font-medium transition-colors">Contato</a></li>
       </ul>
     </nav>
